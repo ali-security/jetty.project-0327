@@ -63,27 +63,18 @@ public class DelegatedServerUpgradeResponse implements JettyServerUpgradeRespons
     @Override
     public void addHeader(String name, String value)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         httpFields.add(name, value);
     }
 
     @Override
     public void setHeader(String name, String value)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         httpFields.put(name, List.of(value));
     }
 
     @Override
     public void setHeader(String name, List<String> values)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         httpFields.put(name, values);
     }
 
@@ -135,27 +126,18 @@ public class DelegatedServerUpgradeResponse implements JettyServerUpgradeRespons
     @Override
     public void sendForbidden(String message) throws IOException
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         httpServletResponse.sendError(HttpStatus.FORBIDDEN_403, message);
     }
 
     @Override
     public void setAcceptedSubProtocol(String protocol)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         upgradeResponse.setAcceptedSubProtocol(protocol);
     }
 
     @Override
     public void setExtensions(List<ExtensionConfig> configs)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         upgradeResponse.setExtensions(configs.stream()
             .map(c -> new org.eclipse.jetty.websocket.core.ExtensionConfig(c.getName(), c.getParameters()))
             .collect(Collectors.toList()));
@@ -164,9 +146,6 @@ public class DelegatedServerUpgradeResponse implements JettyServerUpgradeRespons
     @Override
     public void setStatusCode(int statusCode)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         httpServletResponse.setStatus(statusCode);
     }
 
@@ -182,9 +161,6 @@ public class DelegatedServerUpgradeResponse implements JettyServerUpgradeRespons
     @Override
     public void sendError(int statusCode, String message) throws IOException
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         httpServletResponse.sendError(statusCode, message);
     }
 }

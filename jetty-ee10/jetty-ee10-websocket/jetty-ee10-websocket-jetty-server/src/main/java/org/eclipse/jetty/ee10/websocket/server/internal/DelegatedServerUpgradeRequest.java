@@ -42,7 +42,6 @@ import org.eclipse.jetty.websocket.core.server.ServerUpgradeRequest;
 
 public class DelegatedServerUpgradeRequest implements JettyServerUpgradeRequest
 {
-    private final boolean upgraded;
     private final URI requestURI;
     private final String queryString;
     private final ServerUpgradeRequest upgradeRequest;
@@ -61,7 +60,6 @@ public class DelegatedServerUpgradeRequest implements JettyServerUpgradeRequest
 
     public DelegatedServerUpgradeRequest(ServerUpgradeRequest request, boolean upgraded)
     {
-        this.upgraded = upgraded;
         this.httpServletRequest = (HttpServletRequest)request
             .getAttribute(WebSocketConstants.WEBSOCKET_WRAPPED_REQUEST_ATTRIBUTE);
         this.upgradeRequest = request;
@@ -201,9 +199,6 @@ public class DelegatedServerUpgradeRequest implements JettyServerUpgradeRequest
     @Override
     public HttpSession getSession()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return httpServletRequest.getSession();
     }
 
@@ -234,54 +229,36 @@ public class DelegatedServerUpgradeRequest implements JettyServerUpgradeRequest
     @Override
     public X509Certificate[] getCertificates()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return (X509Certificate[])httpServletRequest.getAttribute("jakarta.servlet.request.X509Certificate");
     }
 
     @Override
     public HttpServletRequest getHttpServletRequest()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return httpServletRequest;
     }
 
     @Override
     public Locale getLocale()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return httpServletRequest.getLocale();
     }
 
     @Override
     public Enumeration<Locale> getLocales()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return httpServletRequest.getLocales();
     }
 
     @Override
     public SocketAddress getLocalSocketAddress()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return upgradeRequest.getConnectionMetaData().getLocalSocketAddress();
     }
 
     @Override
     public SocketAddress getRemoteSocketAddress()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return upgradeRequest.getConnectionMetaData().getRemoteSocketAddress();
     }
 
@@ -294,18 +271,12 @@ public class DelegatedServerUpgradeRequest implements JettyServerUpgradeRequest
     @Override
     public Object getServletAttribute(String name)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return upgradeRequest.getAttribute(name);
     }
 
     @Override
     public Map<String, Object> getServletAttributes()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         Map<String, Object> attributes = new HashMap<>(2);
         Enumeration<String> attributeNames = httpServletRequest.getAttributeNames();
         while (attributeNames.hasMoreElements())
@@ -319,27 +290,18 @@ public class DelegatedServerUpgradeRequest implements JettyServerUpgradeRequest
     @Override
     public Map<String, List<String>> getServletParameters()
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return getParameterMap();
     }
 
     @Override
     public boolean isUserInRole(String role)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         return httpServletRequest.isUserInRole(role);
     }
 
     @Override
     public void setServletAttribute(String name, Object value)
     {
-        if (upgraded)
-            throw new IllegalStateException("Already Upgraded to WebSocket");
-
         upgradeRequest.setAttribute(name, value);
     }
 }
