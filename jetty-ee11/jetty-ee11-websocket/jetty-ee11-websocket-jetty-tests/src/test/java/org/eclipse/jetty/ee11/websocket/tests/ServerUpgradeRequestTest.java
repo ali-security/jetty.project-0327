@@ -36,49 +36,28 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Response;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.util.Callback;
 import org.eclipse.jetty.util.security.Credential;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
 import org.eclipse.jetty.websocket.api.UpgradeRequest;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketOpen;
+import org.eclipse.jetty.websocket.api.UpgradeResponse;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.eclipse.jetty.websocket.api.Callback.NOOP;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ServerUpgradeRequestTest
 {
     private Server _server;
-    private ServerConnector _connector;
     private WebSocketClient _client;
-
-    @WebSocket
-    public static class MyEndpoint
-    {
-        @OnWebSocketOpen
-        public void onOpen(Session session) throws Exception
-        {
-            UpgradeRequest upgradeRequest = session.getUpgradeRequest();
-            session.sendText("userPrincipal=" + upgradeRequest.getUserPrincipal(), NOOP);
-            session.sendText("requestURI=" + upgradeRequest.getRequestURI(), NOOP);
-            session.close();
-        }
-
-        @OnWebSocketError
-        public void onError(Throwable t)
-        {
-            t.printStackTrace();
-        }
-    }
+    private ServerConnector _connector;
 
     private static class TestLoginService extends AbstractLoginService
     {
@@ -128,7 +107,7 @@ public class ServerUpgradeRequestTest
         }
 
         @Override
-        public AuthenticationState validateRequest(Request request, Response response, Callback callback)
+        public AuthenticationState validateRequest(Request request, Response response, org.eclipse.jetty.util.Callback callback)
         {
             UserIdentity user = login("user123", null, request, response);
             if (user != null)
@@ -140,19 +119,20 @@ public class ServerUpgradeRequestTest
     }
 
     @BeforeEach
-    public void before() throws Exception
+    public void start() throws Exception
     {
         _server = new Server();
         _connector = new ServerConnector(_server);
         _server.addConnector(_connector);
 
-        ServletContextHandler contextHandler = new ServletContextHandler();
-        contextHandler.setContextPath("/context1");
-        JettyWebSocketServletContainerInitializer.configure(contextHandler, ((servletContext, serverContainer) ->
-        {
-            serverContainer.addMapping("/ws", MyEndpoint.class);
-        }));
-        _server.setHandler(contextHandler);
+        ServletContextHandler servletContextHandler = new ServletContextHandler();
+        JettyWebSocketServletContainerInitializer.configure(servletContextHandler, (servletContext, container) ->
+            container.addMapping("/", (req, resp) ->
+            {
+                resp.setHeader("customHeader", "customHeaderValue");
+                resp.setAcceptedSubProtocol(req.getSubProtocols().get(0));
+                return new ServerSocket();
+            }));
 
         DefaultIdentityService identityService = new DefaultIdentityService();
         LoginService loginService = new TestLoginService(identityService);
@@ -165,34 +145,128 @@ public class ServerUpgradeRequestTest
         securityHandler.setConstraintMappings(List.of(constraintMapping));
         securityHandler.setLoginService(loginService);
         securityHandler.setIdentityService(identityService);
-        contextHandler.setSecurityHandler(securityHandler);
+        servletContextHandler.setSecurityHandler(securityHandler);
         securityHandler.setAuthenticator(new TestAuthenticator());
 
+        _server.setHandler(servletContextHandler);
         _server.start();
+
         _client = new WebSocketClient();
         _client.start();
     }
 
     @AfterEach
-    public void after() throws Exception
+    public void stop() throws Exception
     {
         _client.stop();
         _server.stop();
     }
 
-    @Test
-    public void test() throws Exception
+    @WebSocket
+    public static class ServerSocket extends EventSocket
     {
-        URI uri = URI.create("ws://localhost:" + _connector.getLocalPort() + "/context1/ws");
+        @Override
+        public void onMessage(String message)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            try
+            {
+                switch (message)
+                {
+                    case "getUpgradeRequest" ->
+                    {
+                        UpgradeRequest upgradeRequest = session.getUpgradeRequest();
+                        builder.append("getRequestURI: ").append(upgradeRequest.getRequestURI()).append("\n");
+                        builder.append("getHeaders: ").append(upgradeRequest.getHeaders()).append("\n");
+                        builder.append("getExtensions: ").append(upgradeRequest.getExtensions()).append("\n");
+                        builder.append("getHost: ").append(upgradeRequest.getHost()).append("\n");
+                        builder.append("getHttpVersion: ").append(upgradeRequest.getHttpVersion()).append("\n");
+                        builder.append("getQueryString: ").append(upgradeRequest.getQueryString()).append("\n");
+                        builder.append("getSubProtocols: ").append(upgradeRequest.getSubProtocols()).append("\n");
+                        builder.append("getProtocolVersion: ").append(upgradeRequest.getProtocolVersion()).append("\n");
+                        builder.append("getCookies: ").append(upgradeRequest.getCookies()).append("\n");
+                        builder.append("getUserPrincipal: ").append(upgradeRequest.getUserPrincipal()).append("\n");
+                        builder.append("getOrigin: ").append(upgradeRequest.getOrigin()).append("\n");
+                        builder.append("isSecure: ").append(upgradeRequest.isSecure()).append("\n");
+                        builder.append("getParameterMap: ").append(upgradeRequest.getParameterMap()).append("\n");
+                    }
+                    case "getUpgradeResponse" ->
+                    {
+                        UpgradeResponse upgradeResponse = session.getUpgradeResponse();
+                        builder.append("getHeaders: ").append(upgradeResponse.getHeaders()).append("\n");
+                        builder.append("getExtensions: ").append(upgradeResponse.getExtensions()).append("\n");
+                        builder.append("getStatusCode: ").append(upgradeResponse.getStatusCode()).append("\n");
+                        builder.append("getAcceptedSubProtocol: ").append(upgradeResponse.getAcceptedSubProtocol()).append("\n");
+                    }
+                    default -> throw new IllegalStateException("Unknown message: " + message);
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace(System.err);
+                throw e;
+            }
+
+            session.sendText(builder.toString(), org.eclipse.jetty.websocket.api.Callback.NOOP);
+        }
+    }
+
+    @Test
+    public void testUpgradeRequest() throws Exception
+    {
+        URI uri = new URI("ws://localhost:" + _connector.getLocalPort() + "/?queryParam1=queryParamValue1");
+        ClientUpgradeRequest upgradeRequest = new ClientUpgradeRequest();
+        upgradeRequest.setSubProtocols("subProtocol1", "subProtocol2");
+        upgradeRequest.addExtensions("permessage-deflate");
+        upgradeRequest.setHeader("Cookie", "cookieHeader1=cookieValue1");
+        upgradeRequest.setHeader("Origin", "jetty-test");
+        upgradeRequest.setHeader("CustomRequestHeader", "request-header-value");
+
         EventSocket clientEndpoint = new EventSocket();
-        assertNotNull(_client.connect(clientEndpoint, uri));
+        Session session = _client.connect(clientEndpoint, uri, upgradeRequest).get(5, TimeUnit.SECONDS);
 
-        String msg = clientEndpoint.textMessages.poll(5, TimeUnit.SECONDS);
-        assertThat(msg, equalTo("userPrincipal=user123"));
+        session.sendText("getUpgradeRequest", org.eclipse.jetty.websocket.api.Callback.NOOP);
+        String received = clientEndpoint.textMessages.poll(5, TimeUnit.SECONDS);
+        assertThat(received, containsString("getRequestURI: " + uri));
+        assertThat(received, containsString("CustomRequestHeader=[request-header-value]"));
+        assertThat(received, containsString("getExtensions: [permessage-deflate]"));
+        assertThat(received, containsString("getHost: localhost"));
+        assertThat(received, containsString("getHttpVersion: HTTP/1.1"));
+        assertThat(received, containsString("getQueryString: queryParam1=queryParamValue1"));
+        assertThat(received, containsString("getSubProtocols: [subProtocol1, subProtocol2]"));
+        assertThat(received, containsString("getProtocolVersion: 13"));
+        assertThat(received, containsString("getCookies: [cookieHeader1=\"cookieValue1\"]"));
+        assertThat(received, containsString("getUserPrincipal: user123"));
+        assertThat(received, containsString("getOrigin: jetty-test"));
+        assertThat(received, containsString("isSecure: false"));
+        assertThat(received, containsString("getParameterMap: {queryParam1=[queryParamValue1]}"));
 
-        msg = clientEndpoint.textMessages.poll(5, TimeUnit.SECONDS);
-        assertThat(msg, equalTo("requestURI=ws://localhost:" + _connector.getLocalPort() + "/context1/ws"));
+        session.close();
+        assertTrue(clientEndpoint.closeLatch.await(5, TimeUnit.SECONDS));
+        assertThat(clientEndpoint.closeCode, equalTo(StatusCode.NORMAL));
+    }
 
+    @Test
+    public void testUpgradeResponse() throws Exception
+    {
+        URI uri = new URI("ws://localhost:" + _connector.getLocalPort());
+
+        ClientUpgradeRequest upgradeRequest = new ClientUpgradeRequest();
+        upgradeRequest.setSubProtocols("subProtocol1", "subProtocol2");
+        upgradeRequest.addExtensions("permessage-deflate");
+
+        EventSocket clientEndpoint = new EventSocket();
+        Session session = _client.connect(clientEndpoint, uri, upgradeRequest).get(5, TimeUnit.SECONDS);
+
+        session.sendText("getUpgradeResponse", org.eclipse.jetty.websocket.api.Callback.NOOP);
+        String received = clientEndpoint.textMessages.poll(5, TimeUnit.SECONDS);
+        assertThat(received, containsString("customHeader=[customHeaderValue]"));
+        assertThat(received, containsString("getExtensions: [permessage-deflate]"));
+        assertThat(received, containsString("getStatusCode: 101"));
+        assertThat(received, containsString("getAcceptedSubProtocol: subProtocol1"));
+
+        session.close();
         assertTrue(clientEndpoint.closeLatch.await(5, TimeUnit.SECONDS));
         assertThat(clientEndpoint.closeCode, equalTo(StatusCode.NORMAL));
     }
