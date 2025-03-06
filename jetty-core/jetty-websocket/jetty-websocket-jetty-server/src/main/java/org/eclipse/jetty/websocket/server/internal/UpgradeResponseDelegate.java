@@ -19,6 +19,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.jetty.http.HttpFields;
+import org.eclipse.jetty.http.HttpStatus;
+import org.eclipse.jetty.http.HttpVersion;
 import org.eclipse.jetty.websocket.api.ExtensionConfig;
 import org.eclipse.jetty.websocket.api.UpgradeResponse;
 import org.eclipse.jetty.websocket.common.JettyExtensionConfig;
@@ -27,12 +29,19 @@ import org.eclipse.jetty.websocket.core.server.ServerUpgradeResponse;
 class UpgradeResponseDelegate implements UpgradeResponse
 {
     private final ServerUpgradeResponse response;
+    private final HttpFields httpFields;
     private final Map<String, List<String>> headers;
+    private final int status;
 
     UpgradeResponseDelegate(ServerUpgradeResponse response)
     {
         this.response = response;
-        this.headers = HttpFields.asMap(response.getHeaders());
+        this.httpFields = response.getHeaders().asImmutable();
+        this.headers = HttpFields.asMap(httpFields);
+
+        // Fake status code as it not set at the time this is created.
+        HttpVersion httpVersion = response.getRequest().getConnectionMetaData().getHttpVersion();
+        this.status = (httpVersion == HttpVersion.HTTP_1_1) ? HttpStatus.SWITCHING_PROTOCOLS_101 : HttpStatus.OK_200;
     }
 
     @Override
@@ -52,13 +61,13 @@ class UpgradeResponseDelegate implements UpgradeResponse
     @Override
     public String getHeader(String name)
     {
-        return response.getHeaders().get(name);
+        return httpFields.get(name);
     }
 
     @Override
     public Set<String> getHeaderNames()
     {
-        return response.getHeaders().getFieldNamesCollection();
+        return httpFields.getFieldNamesCollection();
     }
 
     @Override
@@ -70,12 +79,12 @@ class UpgradeResponseDelegate implements UpgradeResponse
     @Override
     public List<String> getHeaders(String name)
     {
-        return response.getHeaders().getValuesList(name);
+        return httpFields.getValuesList(name);
     }
 
     @Override
     public int getStatusCode()
     {
-        return response.getStatus();
+        return status;
     }
 }
