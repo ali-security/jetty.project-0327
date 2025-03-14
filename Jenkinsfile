@@ -62,10 +62,12 @@ pipeline {
           steps {
             timeout( time: 180, unit: 'MINUTES' ) {
               checkout scm
-              mavenBuild( "jdk17", "clean install -Perrorprone io.github.olamy.maven.plugins:jacoco-aggregator-maven-plugin:report-aggregate-all", "maven3") // javadoc:javadoc
+              mavenBuild( "jdk17", "clean install -Perrorprone", "maven3")
               recordIssues id: "analysis-jdk17", name: "Static Analysis jdk17", aggregatingResults: true, enabledForFailure: true,
                             tools: [mavenConsole(), java(), checkStyle(), errorProne(), spotBugs(), javaDoc()],
                             skipPublishingChecks: true, skipBlames: true
+              // only aggregate Jacoco reports
+              mavenBuild( "jdk17", "io.github.olamy.maven.plugins:jacoco-aggregator-maven-plugin:report-aggregate-all", "maven3")
               recordCoverage id: "coverage-jdk17", name: "Coverage jdk17", tools: [[parser: 'JACOCO',pattern: 'target/site/jacoco-aggregate/jacoco.xml']],
                             sourceCodeRetention: 'NEVER' //MODIFIED
                             //sourceDirectories: [[path: 'glob:**/src/main/java'], [path: 'glob:**/target/generated-sources/ee8']]
