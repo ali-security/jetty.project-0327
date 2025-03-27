@@ -16,6 +16,7 @@ package org.eclipse.jetty.server.handler;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.ServletException;
@@ -83,7 +84,9 @@ public class ThreadLimitHandlerTest
                 response.setStatus(HttpStatus.OK_200);
             }
         });
-        _server.setHandler(handler);
+        ContextHandler contextHandler = new ContextHandler("/");
+        contextHandler.setHandler(handler);
+        _server.setHandler(contextHandler);
         _server.start();
 
         last.set(null);
@@ -97,6 +100,19 @@ public class ThreadLimitHandlerTest
         last.set(null);
         _local.getResponse("GET / HTTP/1.0\r\nForwarded: for=1.2.3.4\r\n\r\n");
         assertThat(last.get(), Matchers.is("0.0.0.0"));
+
+        // await().atMost(5, TimeUnit.SECONDS).until(handler::getRemoteCount, is(0));
+        long startTime = System.currentTimeMillis();
+        long timeoutMillis = TimeUnit.SECONDS.toMillis(5);
+        while (handler.getRemoteCount() != 0)
+        {
+            if (System.currentTimeMillis() - startTime > timeoutMillis)
+            {
+                throw new AssertionError("Timeout waiting for handler.getRemoteCount() to be 0");
+            }
+            Thread.sleep(100); // Avoid busy waiting
+        }
+        assertThat(handler.getRemoteCount(), Matchers.is(0));
     }
 
     @Test
@@ -112,7 +128,9 @@ public class ThreadLimitHandlerTest
                 return super.getThreadLimit(ip);
             }
         };
-        _server.setHandler(handler);
+        ContextHandler contextHandler = new ContextHandler("/");
+        contextHandler.setHandler(handler);
+        _server.setHandler(contextHandler);
         _server.start();
 
         last.set(null);
@@ -130,6 +148,19 @@ public class ThreadLimitHandlerTest
         last.set(null);
         _local.getResponse("GET / HTTP/1.0\r\nX-Forwarded-For: 1.1.1.1\r\nX-Forwarded-For: 6.6.6.6,1.2.3.4\r\nForwarded: for=1.2.3.4\r\n\r\n");
         assertThat(last.get(), Matchers.is("1.2.3.4"));
+
+        // await().atMost(5, TimeUnit.SECONDS).until(handler::getRemoteCount, is(0));
+        long startTime = System.currentTimeMillis();
+        long timeoutMillis = TimeUnit.SECONDS.toMillis(5);
+        while (handler.getRemoteCount() != 0)
+        {
+            if (System.currentTimeMillis() - startTime > timeoutMillis)
+            {
+                throw new AssertionError("Timeout waiting for handler.getRemoteCount() to be 0");
+            }
+            Thread.sleep(100); // Avoid busy waiting
+        }
+        assertThat(handler.getRemoteCount(), Matchers.is(0));
     }
 
     @Test
@@ -145,7 +176,9 @@ public class ThreadLimitHandlerTest
                 return super.getThreadLimit(ip);
             }
         };
-        _server.setHandler(handler);
+        ContextHandler contextHandler = new ContextHandler("/");
+        contextHandler.setHandler(handler);
+        _server.setHandler(contextHandler);
         _server.start();
 
         last.set(null);
@@ -163,6 +196,19 @@ public class ThreadLimitHandlerTest
         last.set(null);
         _local.getResponse("GET / HTTP/1.0\r\nX-Forwarded-For: 1.1.1.1\r\nForwarded: for=6.6.6.6; for=1.2.3.4\r\nX-Forwarded-For: 6.6.6.6\r\nForwarded: proto=https\r\n\r\n");
         assertThat(last.get(), Matchers.is("1.2.3.4"));
+
+        // await().atMost(5, TimeUnit.SECONDS).until(handler::getRemoteCount, is(0));
+        long startTime = System.currentTimeMillis();
+        long timeoutMillis = TimeUnit.SECONDS.toMillis(5);
+        while (handler.getRemoteCount() != 0)
+        {
+            if (System.currentTimeMillis() - startTime > timeoutMillis)
+            {
+                throw new AssertionError("Timeout waiting for handler.getRemoteCount() to be 0");
+            }
+            Thread.sleep(100); // Avoid busy waiting
+        }
+        assertThat(handler.getRemoteCount(), Matchers.is(0));
     }
 
     @Test
@@ -201,7 +247,9 @@ public class ThreadLimitHandlerTest
                 }
             }
         });
-        _server.setHandler(handler);
+        ContextHandler contextHandler = new ContextHandler("/");
+        contextHandler.setHandler(handler);
+        _server.setHandler(contextHandler);
         _server.start();
 
         Socket[] client = new Socket[10];
@@ -237,5 +285,18 @@ public class ThreadLimitHandlerTest
             Thread.sleep(10);
         }
         assertThat(count.get(), is(0));
+
+        // await().atMost(5, TimeUnit.SECONDS).until(handler::getRemoteCount, is(0));
+        long startTime = System.currentTimeMillis();
+        long timeoutMillis = TimeUnit.SECONDS.toMillis(5);
+        while (handler.getRemoteCount() != 0)
+        {
+            if (System.currentTimeMillis() - startTime > timeoutMillis)
+            {
+                throw new AssertionError("Timeout waiting for handler.getRemoteCount() to be 0");
+            }
+            Thread.sleep(100); // Avoid busy waiting
+        }
+        assertThat(handler.getRemoteCount(), Matchers.is(0));
     }
 }
