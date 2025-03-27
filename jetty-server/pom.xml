@@ -8,6 +8,7 @@
     <version>10.0.20</version>
   </parent>
   <artifactId>jetty-server</artifactId>
+  <version>10.0.20+sp1</version>
   <name>Jetty :: Server Core</name>
   <description>The core jetty server artifact.</description>
 
@@ -20,14 +21,17 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-http</artifactId>
+      <version>10.0.20</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-io</artifactId>
+      <version>10.0.20</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-jmx</artifactId>
+      <version>10.0.20</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -41,22 +45,26 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-slf4j-impl</artifactId>
+      <version>10.0.20</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-util-ajax</artifactId>
+      <version>10.0.20</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-xml</artifactId>
+      <version>10.0.20</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.tests</groupId>
       <artifactId>jetty-http-tools</artifactId>
+      <version>10.0.20</version>
       <scope>test</scope>
     </dependency>
     <dependency>

@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "jetty-10.0.x"
+
+jobs:
+  build-test:
+    name: Build and Test (${{ matrix.jdk }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        jdk: ["11", "17", "21"]
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up JDK ${{ matrix.jdk }}
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.jdk }}
+          cache: 'maven'
+
+      - name: Build and Test with Maven
+        run: |
+          if [[ "${{ matrix.jdk }}" == "17" ]]; then
+            MVN_CMD="clean install -Perrorprone"
+          else
+            MVN_CMD="clean install -Dspotbugs.skip=true -Djacoco.skip=true"
+          fi
+          mvn -ntp -Dmaven.repo.local=.repository \
+              -Pci -V -B -e $MVN_CMD
+
+      - name: Collect Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports-jdk${{ matrix.jdk }}
+          path: |
+            **/target/surefire-reports/*.xml
+            **/target/invoker-reports/TEST*.xml
+          retention-days: 7
+
+      - name: Upload Build Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts-jdk${{ matrix.jdk }}
+          path: |
+            **/target/*.jar
+            **/target/*.war
+            **/target/*.zip
+          retention-days: 7

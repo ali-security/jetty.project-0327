@@ -750,397 +750,397 @@
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>apache-jsp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>apache-jstl</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>infinispan-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>infinispan-embedded</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <classifier>config</classifier>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>infinispan-embedded-query</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>infinispan-remote</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <classifier>config</classifier>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>infinispan-remote-query</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-alpn-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-alpn-conscrypt-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-alpn-conscrypt-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-alpn-java-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-alpn-java-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-alpn-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-annotations</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-ant</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-cdi</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-deploy</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-hazelcast</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-home</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>zip</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-http</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-http-spi</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-io</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-jaas</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-jaspi</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-jmx</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-jndi</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-jspc-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-keystore</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-nosql</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-openid</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-plus</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-proxy</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-quickstart</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-rewrite</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-runner</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-security</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20+sp1</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-servlet</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-servlets</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-slf4j-impl</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-start</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-unixdomain-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-unixsocket-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-unixsocket-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-unixsocket-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-util</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-util-ajax</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-xml</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-async-rest-jar</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-async-rest-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-container-initializer</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-jaas-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-jetty-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-jndi-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-jsp-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-mock-resources</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-proxy-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-simple-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-spec-webapp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.demos</groupId>
         <artifactId>demo-web-fragment</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.fcgi</groupId>
         <artifactId>fcgi-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.fcgi</groupId>
         <artifactId>fcgi-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.gcloud</groupId>
         <artifactId>jetty-gcloud-session-manager</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http2</groupId>
         <artifactId>http2-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http2</groupId>
         <artifactId>http2-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http2</groupId>
         <artifactId>http2-hpack</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http2</groupId>
         <artifactId>http2-http-client-transport</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http2</groupId>
         <artifactId>http2-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http3</groupId>
         <artifactId>http3-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http3</groupId>
         <artifactId>http3-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http3</groupId>
         <artifactId>http3-http-client-transport</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http3</groupId>
         <artifactId>http3-qpack</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.http3</groupId>
         <artifactId>http3-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.memcached</groupId>
         <artifactId>jetty-memcached-sessions</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.orbit</groupId>
@@ -1170,73 +1170,73 @@
       <dependency>
         <groupId>org.eclipse.jetty.osgi</groupId>
         <artifactId>jetty-httpservice</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.osgi</groupId>
         <artifactId>jetty-osgi-alpn</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.osgi</groupId>
         <artifactId>jetty-osgi-boot</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.osgi</groupId>
         <artifactId>jetty-osgi-boot-jsp</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.osgi</groupId>
         <artifactId>jetty-osgi-boot-warurl</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
 
       <dependency>
         <groupId>org.eclipse.jetty.quic</groupId>
         <artifactId>quic-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.quic</groupId>
         <artifactId>quic-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.quic</groupId>
         <artifactId>quic-quiche-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.quic</groupId>
         <artifactId>quic-quiche-foreign-incubator</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.quic</groupId>
         <artifactId>quic-quiche-jna</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.quic</groupId>
         <artifactId>quic-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.tests</groupId>
         <artifactId>jetty-http-tools</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.tests</groupId>
         <artifactId>test-distribution</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.tests</groupId>
         <artifactId>test-sessions-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.toolchain</groupId>
@@ -1261,57 +1261,57 @@
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-core-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-core-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-core-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-javax-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-javax-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-javax-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-jetty-api</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-jetty-client</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-jetty-common</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-jetty-server</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.websocket</groupId>
         <artifactId>websocket-servlet</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
       </dependency>
       <dependency>
         <groupId>org.glassfish.jaxb</groupId>
@@ -1469,7 +1469,7 @@
       <dependency>
         <groupId>org.eclipse.jetty.tests</groupId>
         <artifactId>jetty-home-tester</artifactId>
-        <version>${project.version}</version>
+        <version>10.0.20</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -1630,7 +1630,7 @@
             <archive>
               <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
               <manifestEntries>
-                <Implementation-Version>${project.version}</Implementation-Version>
+                <Implementation-Version>10.0.20</Implementation-Version>
                 <Implementation-Vendor>Eclipse Jetty Project</Implementation-Vendor>
                 <url>${jetty.url}</url>
               </manifestEntries>
@@ -1766,7 +1766,7 @@
               <GITBROWSEURL>https://github.com/jetty/jetty.project/tree/jetty-10.0.x</GITBROWSEURL>
               <GITDOCURL>https://github.com/jetty/jetty.project/tree/jetty-10.0.x/documentation/jetty-documentation/src/main/asciidoc</GITDOCURL>
               <MVNCENTRAL>http://central.maven.org/maven2</MVNCENTRAL>
-              <VERSION>${project.version}</VERSION>
+              <VERSION>10.0.20</VERSION>
               <TIMESTAMP>${maven.build.timestamp}</TIMESTAMP>
               <toc>left</toc>
               <icons>font</icons>
@@ -1962,7 +1962,7 @@
           <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>build-resources</artifactId>
-            <version>${project.version}</version>
+            <version>10.0.20</version>
           </dependency>
         </dependencies>
         <executions>
@@ -2022,14 +2022,13 @@
               <rules>
                 <requireMavenVersion>
                   <version>[3.5.0,)</version>
-                  <message>[ERROR] OLD MAVEN [${maven.version}] in use, Jetty ${project.version} requires Maven 3.5.0 or newer</message>
+                  <message>[ERROR] OLD MAVEN [${maven.version}] in use, Jetty 10.0.20 requires Maven 3.5.0 or newer</message>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>[11,)</version>
-                  <message>[ERROR] OLD JDK [${java.version}] in use. Jetty ${project.version} requires JDK 11 or newer</message>
+                  <message>[ERROR] OLD JDK [${java.version}] in use. Jetty 10.0.20 requires JDK 11 or newer</message>
                 </requireJavaVersion>
                 <versionTxtRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.VersionTxtRule"></versionTxtRule>
-                <versionOsgiRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireOsgiCompatibleVersionRule"></versionOsgiRule>
                 <versionRedhatRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireRedhatCompatibleVersionRule"></versionRedhatRule>
                 <versionDebianRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireDebianCompatibleVersionRule"></versionDebianRule>
                 <requireUpperBoundDeps></requireUpperBoundDeps>
@@ -2062,7 +2061,7 @@
             <phase>generate-resources</phase>
             <configuration>
               <resourceBundles>
-                <resourceBundle>org.eclipse.jetty:build-resources:${project.version}</resourceBundle>
+                <resourceBundle>org.eclipse.jetty:build-resources:10.0.20</resourceBundle>
               </resourceBundles>
             </configuration>
           </execution>
@@ -2366,7 +2365,7 @@
                   <rules>
                     <requireJavaVersion>
                       <version>[17,)</version>
-                      <message>[ERROR] OLD JDK [${java.version}] in use. Jetty Release ${project.version} MUST use JDK 17 or newer</message>
+                      <message>[ERROR] OLD JDK [${java.version}] in use. Jetty Release 10.0.20 MUST use JDK 17 or newer</message>
                     </requireJavaVersion>
                   </rules>
                 </configuration>
