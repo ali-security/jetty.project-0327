@@ -19,7 +19,7 @@ jobs:
         cache: maven
 
     - name: Build with Maven
-      run: mvn -B test install -Djdk.tls.allowUnsafeServerCertChange=true
+      run: mvn -B test install
 
     - name: Upload artifacts
       if: always() # Upload artifacts even if tests fail, useful for debugging
